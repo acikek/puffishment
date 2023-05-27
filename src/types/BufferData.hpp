@@ -7,7 +7,7 @@
 class BufferData {
 
 private:
-    static constexpr float TICK = 1.0f / 60.0f;
+    static constexpr float TICK = 0.25f;
     float accumulated = 0.0f;
 
 public:
@@ -17,7 +17,8 @@ public:
 	unsigned int sessionClicks = 0;
 	/// The amount of buffer clicks the player has performed during the current attempt
 	unsigned int attemptClicks = 0;
-    //unsigned int bufferTicks = 0;
+    /// The amount of buffer ticks since the end of the last buffer hold
+    unsigned int offTicks = 0;
 
     /**
      * Should be called each update frame.

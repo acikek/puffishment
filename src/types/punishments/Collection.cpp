@@ -47,4 +47,19 @@ public:
             }
         }
     }
+
+    /**
+     * Iterates through all punishments and calls their
+     * 'afterBuffer' callbacks if the off tick amount is in range.
+     * 
+     * @param[in] context the application context
+     * @param[in] offTicks the amount of ticks since the last hold
+     */
+    void afterBuffer(PunishmentContext context, unsigned int offTicks) {
+        for (auto const& p : this->list) {
+            if (p->isEnabled() && offTicks <= p->maxOffTicks()) {
+                p->afterBuffer(context, offTicks);
+            }
+        }
+    }
 };

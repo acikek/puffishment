@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
 
@@ -25,8 +27,26 @@ public:
     BoostPunishment() : offset(getSettingsOffset())
     {}
 
+    static void movePlayer(PunishmentContext context, float offset) {
+        context.player->setPositionX(context.player->getPositionX() + offset);
+    }
+
     void apply(PunishmentContext context) override {
-        context.player->setPositionX(context.player->getPositionX() + this->offset);
+        movePlayer(context, this->offset);
+    }
+
+    unsigned int maxOffTicks() override {
+        return 120;
+    }
+
+    float easeOffset(unsigned int offTicks) {
+        float t = (float) offTicks / maxOffTicks();
+        float eased = 1.0f - std::pow(1.0f - t, 3);
+        return offset - (eased * offset);
+    }
+
+    void afterBuffer(PunishmentContext context, unsigned int offTicks) override {
+        movePlayer(context, easeOffset(offTicks));
     }
 
     bool isEnabled() override {

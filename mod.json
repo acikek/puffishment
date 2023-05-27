@@ -22,9 +22,9 @@
 			"name": "Boost Strength",
 			"description": "The strength of the boost punishment. Set to 0.0 to deactivate.",
 			"type": "float",
-			"default": 0.3,
+			"default": 1.0,
 			"min": 0.0,
-			"max": 1.0,
+			"max": 3.0,
 			"control": {
 				"slider": true,
 				"slider-step": 0.1
