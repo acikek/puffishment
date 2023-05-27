@@ -4,5 +4,14 @@
 	"id": "acikek.puffishment",
 	"name": "Puffishment",
 	"developer": "acikek",
-	"description": "Buffer Punisher"
+	"description": "Buffer Punisher",
+
+	"settings": {
+		"boost-strength": {
+			"name": "Boost Strength",
+			"description": "The strength of the boost punishment",
+			"type": "float",
+			"default": 0.3
+		}
+	}
 }

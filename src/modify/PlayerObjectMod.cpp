@@ -1,8 +1,9 @@
 #pragma once
 
+#include <Geode/Geode.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 
-#include "../types/BufferData.cpp"
+#include "../types/punishments/Collection.cpp"
 
 using namespace geode::prelude;
 
@@ -10,6 +11,8 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 
 	/// The buffer state tracker.
 	BufferData m_buffers = BufferData();
+	/// The punishment container.
+	Punishments m_punishments = Punishments();
 	
 	/**
 	 * @return whether the player's current state permits buffer clicking
@@ -19,23 +22,24 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 	}
 
 	/**
-	 * Punishes the player by offsetting their position to the right
-	 * by the specified amount.
-	 * 
-	 * @param[in] offset the amount to offset by
+	 * @return punishment context created from the player's update state
 	 */
-	void punishMovement(float offset) {
-		this->setPositionX(this->getPositionX() + offset);
+	PunishmentContext getContext(float delta) {
+		return PunishmentContext { 
+			.player = this, 
+			.buffers = &m_fields->m_buffers,
+			.delta = delta
+		};
 	}
 
 	/**
 	 * Called each frame the player is buffering.
 	 * 
-	 * Punishes the player in some way.
+	 * May punish the player in some way dependent on the 'Punishments' container.
 	 * Then, if this is the first frame the player has been buffering, increments the counters.
 	 */
 	void onBuffering(float delta) {
-		this->punishMovement(0.3f * delta * 30.0f);
+		m_fields->m_punishments.apply(getContext(delta));
 
 		if (m_fields->m_buffers.isBuffering)
 			return;
