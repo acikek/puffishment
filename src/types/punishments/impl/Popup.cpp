@@ -35,9 +35,6 @@ public:
     }
 
     void apply(PunishmentContext context) override {
-        if (context.buffers->isBuffering) {
-            return;
-        }
         if (std::rand() % 100 <= chance) {
             FLAlertLayer::create("Alert", getNotice(), "OK")->show();
             chance = baseChance;
@@ -48,6 +45,10 @@ public:
 
     bool isEnabled() override {
         return baseChance > 0;
+    }
+
+    bool isContinuous() override {
+        return false;
     }
 
     static int getSettingsChance() {

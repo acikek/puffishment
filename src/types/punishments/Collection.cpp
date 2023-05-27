@@ -38,10 +38,11 @@ public:
      * their effects to the player if enabled.
      * 
      * @param[in] context the application context
+     * @param[in] hold whether the player is buffer holding as opposed to clicking
      */
-    void apply(PunishmentContext context) {
+    void apply(PunishmentContext context, bool hold) {
         for (auto const& p : this->list) {
-            if (p->isEnabled()) {
+            if (p->isEnabled() && (!hold || p->isContinuous())) {
                 p->apply(context);
             }
         }

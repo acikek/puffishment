@@ -19,7 +19,7 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 	 * @return whether the player's current state permits buffer clicking
 	 */
 	bool canBuffer() {
-		return !(m_isDashing || m_isShip || m_isDart || m_isSpider);
+		return !(m_isDashing || m_isShip || m_isBird || m_isDart || m_isSpider);
 	}
 
 	/**
@@ -42,13 +42,13 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 	 * @param canActivate whether a buffer (physics) tick is occurring.
 	 */
 	void onBuffering(float delta, bool canActivate) {
+		bool hold = m_fields->m_buffers.isBuffering;
+
 		if (canActivate)
-			m_fields->m_punishments.apply(getContext(delta));
+			m_fields->m_punishments.apply(getContext(delta), hold);
 
-		if (m_fields->m_buffers.isBuffering)
-			return;
-
-		m_fields->m_buffers.addBufferClick();
+		if (!hold)
+			m_fields->m_buffers.addBufferClick();
 	}
 
 	/**

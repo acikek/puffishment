@@ -33,6 +33,10 @@ public:
         return this->offset > 0.0f;
     }
 
+    bool isContinuous() override {
+        return true;
+    }
+
     static float getSettingsOffset() {
         return Mod::get()->getSettingValue<double>("boost-strength");
     }

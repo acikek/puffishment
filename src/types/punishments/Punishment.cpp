@@ -23,7 +23,6 @@ class Punishment {
 public:
     /**
      * Applies a negative effect to the specified player.
-     * This is called each buffer tick.
      * 
      * @param[in] context the application context
      */
@@ -33,4 +32,9 @@ public:
      * @return whether the punishment would be able to apply to the player
      */
     virtual bool isEnabled() = 0;
+
+    /**
+     * @return whether the punishment should be applied each buffer tick
+     */
+    virtual bool isContinuous() = 0;
 };
