@@ -8,7 +8,7 @@
 
 #include "../Punishment.cpp"
 
-using namespace geode;
+using namespace geode::prelude;
 
 /**
  * Punishes the player by displaying an annoying popup at random

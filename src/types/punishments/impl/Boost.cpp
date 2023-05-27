@@ -5,7 +5,7 @@
 
 #include "../Punishment.cpp"
 
-using namespace geode;
+using namespace geode::prelude;
 
 /**
  * Punishes the player by offsetting their position to the right

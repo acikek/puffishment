@@ -5,6 +5,17 @@
 	"name": "Puffishment",
 	"developer": "acikek",
 	"description": "Buffer Punisher",
+	"repository": "https://github.com/acikek/puffishment",
+	"issues": {
+		"info": "Report any issues to the project repository.",
+		"url": "https://github.com/acikek/puffishment/issues"
+	},
+
+	"resources": {
+		"files": [
+			"resources/ding.ogg"
+		]
+	},
 
 	"settings": {
 		"boost-strength": {
@@ -29,6 +40,12 @@
 			"control": {
 				"slider": true
 			}
+		},
+		"ding": {
+			"name": "Ding",
+			"description": "Whether to play a 'ding' sound on a buffer click.",
+			"type": "bool",
+			"default": true
 		}
 	}
 }

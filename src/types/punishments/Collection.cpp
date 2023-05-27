@@ -5,6 +5,7 @@
 #include "Punishment.cpp"
 #include "impl/Boost.cpp"
 #include "impl/Popup.cpp"
+#include "impl/Ding.cpp"
 
 /**
  * A collection of all punishments that should
@@ -29,6 +30,7 @@ public:
     Punishments() {
         list.push_back(std::unique_ptr<Punishment>(new BoostPunishment()));
         list.push_back(std::unique_ptr<Punishment>(new PopupPunishment()));
+        list.push_back(std::unique_ptr<Punishment>(new DingPunishment()));
     }
 
     /**
