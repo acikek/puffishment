@@ -3,7 +3,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
 
-#include "Punishment.cpp"
+#include "../Punishment.cpp"
 
 using namespace geode;
 
@@ -18,8 +18,6 @@ private:
 
 public:
 
-    static constexpr float MULTIPLIER = 10.0f;
-
     BoostPunishment(float offset) {
         this->offset = offset;
     }
@@ -27,12 +25,8 @@ public:
     BoostPunishment() : offset(getSettingsOffset())
     {}
 
-    float getOffset(float delta) {
-        return this->offset * delta * MULTIPLIER;
-    }
-
     void apply(PunishmentContext context) override {
-        context.player->setPositionX(context.player->getPositionX() + getOffset(context.delta));
+        context.player->setPositionX(context.player->getPositionX() + this->offset);
     }
 
     bool isEnabled() override {

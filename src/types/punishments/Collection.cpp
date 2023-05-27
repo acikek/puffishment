@@ -3,7 +3,8 @@
 #include <Geode/Geode.hpp>
 
 #include "Punishment.cpp"
-#include "Boost.cpp"
+#include "impl/Boost.cpp"
+#include "impl/Popup.cpp"
 
 /**
  * A collection of all punishments that should
@@ -27,14 +28,14 @@ public:
      */
     Punishments() {
         list.push_back(std::unique_ptr<Punishment>(new BoostPunishment()));
+        list.push_back(std::unique_ptr<Punishment>(new PopupPunishment()));
     }
 
     /**
      * Iterates through all punishments and applies
      * their effects to the player if enabled.
      * 
-     * @param[in] player the player to act on
-     * @param[in] delta the tick delta
+     * @param[in] context the application context
      */
     void apply(PunishmentContext context) {
         for (auto const& p : this->list) {

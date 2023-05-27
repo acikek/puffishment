@@ -6,7 +6,7 @@
 #include "../BufferData.cpp"
 
 /**
- * 
+ * A context structure to be passed into 'Punishment' functions.
  */
 struct PunishmentContext {
     PlayerObject* player;
@@ -23,10 +23,9 @@ class Punishment {
 public:
     /**
      * Applies a negative effect to the specified player.
-     * This is called each frame the player is buffering.
+     * This is called each buffer tick.
      * 
-     * @param[in] player the player to act on
-     * @param[in] delta the tick delta
+     * @param[in] context the application context
      */
     virtual void apply(PunishmentContext context) = 0;
 

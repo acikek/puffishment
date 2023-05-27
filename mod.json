@@ -9,11 +9,23 @@
 	"settings": {
 		"boost-strength": {
 			"name": "Boost Strength",
-			"description": "The strength of the boost punishment",
+			"description": "The strength of the boost punishment. Set to 0.0 to deactivate.",
 			"type": "float",
-			"default": 0.5,
+			"default": 0.3,
 			"min": 0.0,
 			"max": 1.0,
+			"control": {
+				"slider": true,
+				"slider-step": 0.1
+			}
+		},
+		"popup-chance": {
+			"name": "Popup Chance",
+			"description": "The chance of a popup occurring on a buffer click. Set to 0 to deactivate.",
+			"type": "int",
+			"default": 3,
+			"min": 0,
+			"max": 100,
 			"control": {
 				"slider": true
 			}

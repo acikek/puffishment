@@ -38,14 +38,16 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 	 * 
 	 * May punish the player in some way dependent on the 'Punishments' container.
 	 * Then, if this is the first frame the player has been buffering, increments the counters.
+	 * 
+	 * @param canActivate whether a buffer (physics) tick is occurring.
 	 */
-	void onBuffering(float delta) {
-		m_fields->m_punishments.apply(getContext(delta));
+	void onBuffering(float delta, bool canActivate) {
+		if (canActivate)
+			m_fields->m_punishments.apply(getContext(delta));
 
 		if (m_fields->m_buffers.isBuffering)
 			return;
 
-		m_fields->m_buffers.isBuffering = true;
 		m_fields->m_buffers.addBufferClick();
 	}
 
@@ -62,8 +64,10 @@ class $modify(PuffishmentPlayer, PlayerObject) {
 	 * and punishes the player if so.
  	 */
 	void update(float delta) {
+		bool canActivate = m_fields->m_buffers.onUpdate(delta);
+
 		if (this->canBuffer() && m_hasJustHeld)
-			this->onBuffering(delta);
+			this->onBuffering(delta, canActivate);
 		else
 			this->onBufferEnd();
 

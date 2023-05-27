@@ -6,6 +6,10 @@
  */
 class BufferData {
 
+private:
+    static constexpr float TICK = 1.0f / 60.0f;
+    float accumulated = 0.0f;
+
 public:
     /// Whether the player is currently performing a buffer hold
 	bool isBuffering = false;
@@ -13,6 +17,13 @@ public:
 	unsigned int sessionClicks = 0;
 	/// The amount of buffer clicks the player has performed during the current attempt
 	unsigned int attemptClicks = 0;
+    //unsigned int bufferTicks = 0;
+
+    /**
+     * Should be called each update frame.
+     * @return whether this frame is a buffer tick
+     */
+    bool onUpdate(float delta);
 
     /**
      * Sets the 'isBuffering' value to its opposite.
