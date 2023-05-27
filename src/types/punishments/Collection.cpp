@@ -26,7 +26,7 @@ public:
      * therefore starting a session.
      */
     Punishments() {
-        list.push_back(std::unique_ptr<Punishment>(new BoostPunishment));
+        list.push_back(std::unique_ptr<Punishment>(new BoostPunishment()));
     }
 
     /**

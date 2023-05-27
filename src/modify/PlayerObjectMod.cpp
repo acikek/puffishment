@@ -3,6 +3,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 
+#include "../types/BufferData.hpp"
 #include "../types/punishments/Collection.cpp"
 
 using namespace geode::prelude;

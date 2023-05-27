@@ -18,7 +18,7 @@ private:
 
 public:
 
-    static constexpr std::string SETTING = "boost-strength";
+    static constexpr float MULTIPLIER = 10.0f;
 
     BoostPunishment(float offset) {
         this->offset = offset;
@@ -28,18 +28,18 @@ public:
     {}
 
     float getOffset(float delta) {
-        return this->offset * delta * 30.0f;
+        return this->offset * delta * MULTIPLIER;
     }
 
     void apply(PunishmentContext context) override {
-        context.player->setPositionX(context.player->getPositionX() + offset);
+        context.player->setPositionX(context.player->getPositionX() + getOffset(context.delta));
     }
 
     bool isEnabled() override {
-        return this->offset >= 0.0f;
+        return this->offset > 0.0f;
     }
 
     static float getSettingsOffset() {
-        return Mod::get()->getSettingValue<double>(SETTING);
+        return Mod::get()->getSettingValue<double>("boost-strength");
     }
 };
