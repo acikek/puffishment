@@ -3,7 +3,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
 
-#include "../BufferData.cpp"
+#include "../BufferData.hpp"
 
 /**
  * A context structure to be passed into 'Punishment' functions.

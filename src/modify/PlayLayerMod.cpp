@@ -4,7 +4,7 @@
 
 #include "PlayerObjectMod.cpp"
 
-using namespace geode;
+using namespace geode::prelude;
 
 class $modify(PuffishmentPlayLayer, PlayLayer) {
 
